@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./target/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "target": "es2017", // Don't try to rewrite any modern code. Babel will take care of that if supported browsers don't support newest features 
+        "jsx": "react",
+        "moduleResolution": "node",
+        "declaration": true,
+        "noEmitOnError": false,
+        "allowSyntheticDefaultImports": true
+        // "strictNullChecks": true
+    }
+}
