@@ -27,7 +27,7 @@ const playerColumns = [
 ];
  
  
-export const PlayerDataGrid = (props: IPlayerDataGridProps) => {
+export const TeamDataGrid = (props: IPlayerDataGridProps) => {
   return (
     <DataGridComponent
       columns={playerColumns}

@@ -125,6 +125,42 @@ function readCsv(file: string){
         //.pipe(transform)
 }
 
+
+/*
+"teams": [
+    {
+      "id": "71",
+      "title": "Aston Villa",
+      "history": [
+        {
+          "h_a": "h",
+          "xG": 0.80527,
+          "xGA": 0.849709,
+          "npxG": 0.80527,
+          "npxGA": 0.0885404,
+          "ppda": {
+            "att": 89,
+            "def": 20
+          },
+          "ppda_allowed": {
+            "att": 247,
+            "def": 14
+          },
+          "deep": 17,
+          "deep_allowed": 2,
+          "scored": 1,
+          "missed": 0,
+          "xpts": 1.1601,
+          "result": "w",
+          "date": "2020-09-21 17:00:00",
+          "wins": 1,
+          "draws": 0,
+          "loses": 0,
+          "pts": 3,
+          "npxGD": 0.7167296000000001
+        },
+*/
+
 export async function getTeamData(){
     let headers = new Headers();
     let players: iPlayer[] = []
@@ -133,8 +169,9 @@ export async function getTeamData(){
 
     try {
         //const res = await fetch(this.conn.url);
-        let response = await authFetch('/api/team_stats',{
-            team: 'Everton'
+        let response = await authFetch('/api/teams',{
+            league: 'epl',
+            year: 2020
         })
     
         if (response){

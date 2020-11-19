@@ -7,7 +7,8 @@ import {
     Link,
     Redirect
   } from "react-router-dom";
-import {Home} from './Home'
+import {TeamSummary} from './TeamSummary'
+import {HomeDashboard} from './Dashboard'
 
 //import './AppTemplate.css';
 //import { ReactElem } from "../ReactCommons";
@@ -28,7 +29,8 @@ export const App = (props: AppProps) => {
         <div className="app">
             <Router>
                 <Switch>
-                    <Route exact path="/home" component={() => <Home loadData={true}/>}/>
+                    <Route exact path="/teamSummary" component={() => <TeamSummary loadData={true}/>}/>
+                    <Route exact path="/home" component={() => <HomeDashboard/>}/>
                     <Route exact path="/" render={() => (
                         isUserLogged ? (
                             <Redirect to="/home"/>
