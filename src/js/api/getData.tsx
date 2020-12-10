@@ -160,28 +160,102 @@ function readCsv(file: string){
           "npxGD": 0.7167296000000001
         },
 */
+export interface ITeam{
+    id: string,
+    title: string,
+    history: ITeamHistory[]
+}
 
-export async function getTeamData(){
+export interface ITeamHistory{
+    id: string,
+    deep: number,
+    deep_allowed: number,
+    draws: number,
+    loses: number,
+    missed: number,
+    h_a: string,
+    npxG: number,
+    npxGA: number,
+    npxGD: number,
+    ppda: any,
+    ppda_allowed: any,
+    pts: number,
+    result:string,
+    scored: number,
+    wins: number,
+    xG: number,
+    xGA: number,
+    xpts: number
+}
+export interface IPlayer{
+    id: string,
+    player_name: string,
+    games: number,
+    time: number,
+    goals: number,
+    xG: number,
+    assists: number,
+    xA: number,
+    shots: number,
+    key_passes: number,
+    yellow_cards: number,
+    red_cards: number,
+    position: string,
+    team_title: string,
+    npg: number,
+    npxG: number,
+    xGChain: number,
+    xGBuildup: number
+}
+
+
+export async function getTeamData(league: 'epl', year: 2020) {
     let headers = new Headers();
-    let players: iPlayer[] = []
 
     headers.append('Content-Type', 'application/json');
 
     try {
         //const res = await fetch(this.conn.url);
         let response = await authFetch('/api/teams',{
-            league: 'epl',
-            year: 2020
+            league: league,
+            year: year
         })
-    
-        if (response){
-            console.log(response)
-        }//// 
-        return response
 
+        let teams:ITeam[] = []
+
+        if (response.results){
+            teams = response.results[0]
+            return teams
+        }
+        return teams
     }
     catch (error) {
         console.log(error + " response accessing" + '/api/team_stats')
+    };
+
+}
+
+export async function getPlayerData(league: 'epl', year: 2020) {
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+
+    try {
+        //const res = await fetch(this.conn.url);
+        let response = await authFetch('/api/players',{
+            league: league,
+            year: year
+        })
+
+        let players:IPlayer[] = []
+    //    console.log(response.results)
+        if (response.results){
+            players = response.results
+        }
+        return players
+    }
+    catch (error) {
+        console.log(error + " response accessing" + '/api/players')
     };
 
 }
